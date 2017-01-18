@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+<link rel="shortcut icon" href="" > <!-- 地址栏前面的图标 -->
+<title>图有利</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}../layer/layer.js"></script>
+
+<!--[if lte IE 6]>
+<script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+</script>
+<![endif]-->
+<style type="text/css">
+{literal}
+<!--
+.STYLE35 {font-size: 14px; color: #787878; }
+.STYLE36 {color: #787878}
+.STYLE39 {font-size: 14px; color: #333333; }
+.STYLE41 {font-size: 14px}
+.shou li a {
+    color: white;
+}
+
+
+-->
+{/literal}
+</style>
+</head>
+<body>	
+<style>
+.bk-anime-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 1010px;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    background-image: url("/statics/img/v2/common/stock-bg-a.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+</style>
+<div class="bk-anime-bg">
+        <video poster="https://s.chbtc.com/statics/img/v2/common/stock-bg-a.jpg" id="bk-videoBg" preload="auto" autoplay="autoplay" loop="loop" onended="this.play();" style="width:100%;height:100%;">
+          <source src="https://s.chbtc.com/statics/video/Stocks_And_Charts.mp4" type="video/mp4">
+          <source src="https://s.chbtc.com/statics/video/Stocks_And_Charts.webm" type="video/webm">
+        </video>
+        <script type="text/javascript">
+          //移动设备下移除视频
+       
+        </script>
+</div>
+<!--头部-->
+<div class="top">
+ <div class="box clearfix">
+          {if $smarty.session.userdata.user_id}
+            <div class="nin">
+             您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+            <strong><a href="user.html" alt="点击去个人中心" style="color:red">
+            {$smarty.session.userdata.nick_name}</a>
+            </strong> 
+            &nbsp;{$smarty.session.userdata.user_grade}
+            </div>
+            {/if}
+                   <span class="bang-sp">
+                今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+              </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+   </div>
+</div>
+<div class="box clearfix">
+   <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png"/></a></div>
+   <div class="dao" style="color:white">
+      <ul class="shou clearfix">
+	     <li><a href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+       <li class="diy"><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb">合成贡献宝</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+       <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+       
+	  </ul>
+   </div>
+    <div class="chan">
+ <a id="a" href="" style="color:grey" hover="this.style.color='red'"><img src="{$smarty.const.IMG_URL}/r3.png" />&nbsp; 我的资产 &or;</a>
+ <div id="ifrmMyasset"></div>
+ <script>$('#ifrmMyasset').load('myasset.html');</script>
+ </div>
+</div>
+<!--头部结束-->
+<!--中部-->
+<div class="zhong" style="text-align: center;opacity: 0.85;">
+<h1 style="color:#FF6000;margin:0 auto;font-size: 25px;cursor: pointer;"><a id="download_w" style="color:#EB6032" target="_blank" >点此下载钱包</a></h1>
+          <h1><a href="http://www.tuyouli.cn/钱包操作步骤.docx" style="color:#D97F9C;text-decoration: underline;">点此查看操作步骤</a></h1>
+          <div style="width: 80%;height: 700px;margin:0 auto;">
+
+             <form style="width: 50%;height: 300px;margin:0 auto;"> 
+              <input type="hidden" id="transUrl" value="{$smarty.const.ACCESS_URL}user/vwallet" />
+                <table style="margin:40px auto;">
+                        <tbody>
+                            <tr><td style="color: red;font-size: 10px;">->钱包快速转币通道</td></tr>
+                            <tr><th>我的钱包地址</th><td style="background-color: grey;color: white">{$smarty.session.userdata.vwallet_address}</td></tr>
+                            <tr><th>转出钱包地址</th><td><input name="wallet_address" id="wallet_address" type="text" value="" /></td></tr>
+                            <tr><th>币种</th><td>
+                            <select name="coin_type" id="coin_type" style="width: 143px;">
+                            <option value="rac">RAC</option>
+                        <!--     <option value="rac">升值币(RAC)</option><option value="tc">理财套餐(TC)</option> -->
+                            </select></td></tr>
+                            <input style="display:none" type="text" name="fakeusernameremembered"/>
+                            <input style="display:none" type="password" name="fakepasswordremembered"/>
+                            <tr><th>数量</th><td><input type="text" name="num" id="num" value="" autocomplete="off"></td></tr>
+                           
+                            <tr><th>交易密码</th><td><input type="password" name="trade_pwd" id="trade_pwd" value="" 
+                            autocomplete="off"></td></tr>
+                            {if $result.msg}
+                            <tr><th></th><td style="color:red">{$result.msg}</td></tr>
+                            {/if}
+                            <tr><th></th><td><button class="buttonGreen" type="button" id="submitTrans" value="确认转出">确认转出</button></td></tr>
+                        </tbody>
+                    </table>
+                    <p><span style="color:red">温馨提示：</span>转币操作用于会员之间转币,点击确认后即时生效,为了您的财务安全，请谨慎操作</p>
+             </form>
+                 <div class="table" style="margin:0 auto;width: 50%">
+                     <p class="lightblue4" style="padding:10px 0;color:#777;font-weight:800;font-size:14px;">钱包转账记录</p>
+                    <table style="width:100%">
+                        <thead>
+                        <tr>
+                            <th  bgcolor="#e0e0e0" class="font-12 padding-t-b">虚拟币类型</th>
+                            <th  bgcolor="#e0e0e0" class="font-12 padding-t-b">数量</th>
+                            <th  bgcolor="#e0e0e0" class="font-12 padding-t-b">转出钱包地址</th>
+                            <th  bgcolor="#e0e0e0" class="font-12 padding-t-b">时间</th>
+                          
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {if $translog}
+                       
+                          {foreach $translog as $k => $v}
+                            <tr>
+                                <td>RAC</td>
+                                <td>{$v.num}</td>
+                                <td>{$v.userid_recv_address}</td>
+                                <td>{$v.time}</td>
+                              
+                               
+                            </tr>
+                            {/foreach}
+
+                       {else}
+                            <tr class="nodata" align="center"><td colspan="4"><span class="class="no-data-tips"">暂无转账消息</span></td></tr>
+                       
+
+                        {/if}    
+                        </tbody>
+                    </table>
+                     {if $translog}
+                    <div class="pages">
+                        <p style="width:100%;text-align:center">{$pager}</p>
+                    </div>
+                    {/if}
+                
+                </div>
+                
+            
+          </div>
+</div>
+<!--中部结束-->
+<!--低部-->
+<div style="height:488px;"></div>
+<div class="bottom di_bu">
+   <div class="box clearfix">
+      <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+	  <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+   </div>
+
+</div>
+<script type="text/javascript">
+  $(function(){
+
+            $("#download_w").click(function(){
+             //询问框
+          layer.confirm('风险提示：1、钱包操作复杂，请勿超出规则操作，否则后果自负。\r\n 2、钱包请勿重复安装，以免出现问题。\r\n 3、自身操作失误所造成的损失由自己承担。\r\n 4、钱包请及时备份，详情查看教程。', {
+            btn: ['同意','取消'] //按钮
+          }, function(){
+            
+            location.href="http://www.tuyouli.cn/RevalueCoin-qt3.zip";
+            layer.msg("开始下载钱包");
+          
+
+          }, function(){
+              location.reload();
+          });
+    });
+
+            //转币
+            $('#submitTrans').click(function(){
+
+            var url=$("#transUrl").val();
+            $.post(url,
+              {
+                wallet_address:$("#wallet_address").val(),
+                coin_type:$("#coin_type").val(),
+                num:$("#num").val(),
+                trade_pwd:$("#trade_pwd").val(),
+              },function(result)
+              {  
+                    layer.msg(result.msg,
+                      {
+                        icon:result.icon
+                      });
+                    if(result.icon==1)
+                    window.location.reload();
+              });
+           });
+
+
+  });
+</script>
+<div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+<!--低部结束-->
+</body>
+</html>

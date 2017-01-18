@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+<link rel="shortcut icon" href="" > <!-- 地址栏前面的图标 -->
+<title>图有利</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}echarts.min.js"></script>
+
+<!--[if lte IE 6]>
+<script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+</script>
+<![endif]-->
+<style type="text/css">
+{literal}
+.STYLE1,.STYLE11 {font-size: 13px;color: #da251c;padding: 0;margin: 0}/*买*/
+.STYLE9 {font-size: 12px; color: #787878; padding: 0;margin: 0}/*卖*/
+.STYLE15 {font-size: 13px; color: green;padding: 0;margin: 0}/*成交*/
+
+.t-rac{width:1200px;height:800px;}
+.t-rac-i{width:400px;height: 800px;float:left;}
+.t-rac-i table{width: 398px;height:800px;border:1px solid red;}
+.tc-top{width: 100%;height: 30px;}
+.top-li-pad{padding:0 25px;}
+.top-left{float: left;color: white;}
+.top-right{float:right;color: white;width: 27%;}
+.top-right>table>tbody>tr>td{width: 9%;text-align: right;}
+.zhong{width: 100%;height: 900px;background: black;padding: 0}
+.tc-left{width:73%;height: 100%;background: black;float:left;}
+.tc-right{width:25%;height: 98%;background: #1E1E1E;float:right;padding: 0.5% 1% 0.7% 0.5%;overflow: hidden;}
+.tc-right>table>tbody>tr{padding: 0;margin: 0;width: 50%;}
+.tc-right>table>tbody>tr>td{padding: 0;margin: 0;width: 50%;height: 16px;}
+
+.tc-bottom{width: 100%;text-align: center;height: 50px;padding-top: 20px;}
+.shou>li>a{color:white;}
+.shou>li>a:link,a:visited{color:white;}
+.shou>li>a:hover{color:white;}
+.box-bottom{width: 100%;height: 100px;}
+{/literal}
+</style>
+
+</head>
+<body style="background:black">	
+<!--头部-->
+<div class="top">
+   <div class="box clearfix">
+       
+          {if $smarty.session.userdata.user_id}
+            <div class="nin">
+             您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+            <strong><a href="user.html" alt="点击去个人中心" style="color:red">
+            {$smarty.session.userdata.nick_name}</a>
+            </strong> 
+            &nbsp;{$smarty.session.userdata.user_grade}
+            </div>
+            {/if}
+                  <span class="bang-sp">
+                今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+              </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+   </div>
+</div>
+<div width="100%" style="background:#282828" class="clearfix">
+<div class="box">
+   <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png"/></a></div>
+   <div class="dao">
+      <ul class="shou clearfix">
+	    <li><a href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb.html">合成贡献宝</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+         <li class="diy"><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+	  </ul>
+   </div>
+ <div class="chan">
+ <a id="a" href="" style="color:grey" hover="this.style.color='red'"><img src="{$smarty.const.IMG_URL}/r3.png" />&nbsp; 我的资产 &or;</a>
+ <div id="ifrmMyasset"></div>
+ <script>$('#ifrmMyasset').load('myasset.html');</script>
+ </div>
+</div>
+</div>
+<!--头部结束-->
+<!--中部-->
+<div class="zhong">
+  <div class="tc-top">
+     <div class="top-li-pad top-left"><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1" {if $cointype=="rac"}style="color:red"{else}style="color:white"{/if}>rac</a></div>
+     <div class="top-li-aad top-left"><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=2" {if $cointype=="gxb"}style="color:red"{else}style="color:white"{/if}>gxb</a></div>
+     <div class="top-li-aad top-left"><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=3" {if $cointype=="racvgxb"}style="color:red"{else}style="color:white"{/if}>&nbsp;&nbsp;兑换大厅</a></div>
+     <div class="top-right"><table><tr><td><span>时间</span></td><td><span>价格</span></td><td><span>委单量</span></td></table></div>
+  </div>
+  <div class="tc-left">
+    {if $cointype=="rac"}
+    <iframe src="{$smarty.const.ACCESS_URL}k/chart_rac.html" width="100%" height="100%" style="border:0"></iframe>
+    {elseif $cointype=="gxb"}
+    <iframe src="{$smarty.const.ACCESS_URL}k/chart_gxb.html" width="100%" height="100%" style="border:0"></iframe>
+    {else}
+    <iframe src="{$smarty.const.ACCESS_URL}k/chart_racvgxb.html" width="100%" height="100%" style="border:0"></iframe>
+    {/if}
+  </div>
+  <div class="tc-right">
+    {if $cointype=="rac"}
+            <table width="100%" height="40%">
+                {$y=$rac_sell|count}
+                {$yy=14-$y}
+                {assign var="loop" value=$yy}
+                 {section name="loop" loop=$loop}
+               <tr>
+                 <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+                {foreach $rac_sell as $k => $v}
+                
+               <tr>
+                 <td><span class="STYLE15">卖{$y--}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE15">{$v.price|string_format:"%.6f"} </span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+              
+                {/foreach}
+               
+             </table>
+             <table width="100%" height="40%">
+             
+               {$x=1}
+
+               {foreach $rac_buy as $k => $v}
+               <tr>
+                 <td><span class="STYLE11">买{$x++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE11">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/foreach}
+               {assign var="loop" value=15-$x}
+               {section name="loop" loop=$loop}
+               <tr>
+                <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+             </table>
+             <table width="100%" height="20%">
+              
+               {$z=1}
+               {foreach $rac_real as $k => $v}
+               {if $z<6}
+               <tr>
+                 <td><span class="STYLE9">成交{$z++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE9">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/if}
+               {/foreach}
+                {assign var="loop" value=5-$z}
+               {section name="loop" loop=$loop}
+               <tr>
+                 <td><span class="STYLE11">--</span></td>
+                 <td><span class="STYLE9">--</span></td>
+               </tr>
+               {/section}
+             </table>
+    {elseif $cointype=="gxb"}
+            <table width="100%" height="40%">
+            
+                {$y=$gxb_sell|count}
+                {$yy=14-$y}
+                {assign var="loop" value=$yy}
+                 {section name="loop" loop=$loop}
+               <tr>
+                <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+               
+                {foreach $gxb_sell as $k => $v}
+               
+               <tr>
+                 <td><span class="STYLE15">卖{$y--}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE15">{$v.price|string_format:"%.6f"} </span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               
+                {/foreach}
+               
+             </table>
+             <table width="100%" height="40%">
+             
+               {$x=1}
+               {foreach $gxb_buy as $k => $v}
+               <tr>
+                 <td><span class="STYLE11"><span>买{$x++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE11">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/foreach}
+               {assign var="loop" value=15-$x}
+               {section name="loop" loop=$loop}
+               <tr>
+                <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+             </table>
+             <table width="100%" height="20%">
+               {$z=1}
+               {foreach $gxb_real as $k => $v}
+
+               {if 6>$z}
+               <tr>
+                 <td><span class="STYLE9">成交{$z++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE9">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/if}
+               {/foreach}
+                {assign var="loop" value=5-$z}
+               {section name="loop" loop=$loop}
+               <tr>
+                 <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+             </table>
+    {else}
+              <table width="100%" height="40%">
+            
+                {$y=$rac_gxb_sell|count}
+                {$yy=14-$y}
+                {assign var="loop" value=$yy}
+                 {section name="loop" loop=$loop}
+               <tr>
+                <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE15">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+               
+                {foreach $rac_gxb_sell as $k => $v}
+               
+               <tr>
+                 <td><span class="STYLE15">卖{$y--}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE15">{$v.price|string_format:"%.6f"} </span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               
+                {/foreach}
+               
+             </table>
+             <table width="100%" height="40%">
+             
+               {$x=1}
+               {foreach $rac_gxb_buy as $k => $v}
+               <tr>
+                 <td><span class="STYLE11"><span>买{$x++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE11">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/foreach}
+               {assign var="loop" value=15-$x}
+               {section name="loop" loop=$loop}
+               <tr>
+                <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+             </table>
+             <table width="100%" height="20%">
+               {$z=1}
+               {foreach $rac_gxb_real as $k => $v}
+
+               {if 6>$z}
+               <tr>
+                 <td><span class="STYLE9">成交{$z++}&nbsp;{$v.c_time}</span></td>
+                 <td><span class="STYLE9">{$v.price|string_format:"%.6f"}</span></td>
+                 <td><span class="STYLE9">{$v.count|string_format:"%.2f"}</span></td>
+               </tr>
+               {/if}
+               {/foreach}
+                {assign var="loop" value=5-$z}
+               {section name="loop" loop=$loop}
+               <tr>
+                 <td><span class="STYLE11">&nbsp;&nbsp;</span></td>
+                 <td><span class="STYLE9">&nbsp;&nbsp;</span></td>
+               </tr>
+               {/section}
+             </table>
+        
+
+
+    {/if}
+
+  </div>  
+   
+
+</div>
+<!--中部结束-->
+
+
+<!--低部-->
+<div class="clearfix">
+</div>
+ <div class="box box-bottom">
+      <div class="dida" style="margin-top:20px;">
+        <a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+        <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+</div> 
+<!--低部结束-->
+<div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</body>
+</html>

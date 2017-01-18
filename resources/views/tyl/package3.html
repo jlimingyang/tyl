@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+<link rel="shortcut icon" href="" > <!-- 地址栏前面的图标 -->
+<title>图有利</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+<!--[if lte IE 6]>
+<script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+</script>
+<![endif]-->
+<style type="text/css">
+{literal}
+<!--
+.STYLE23 {font-size: 14px; color: #787878; }
+.STYLE25 {color: #333333; font-size: 14px; }
+-->
+{/literal}
+</style>
+</head>
+<body>	
+<!--头部-->
+<div class="top">
+   <div class="box clearfix">
+    
+       
+          {if $smarty.session.userdata.user_id}
+            <div class="nin">
+             您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+            <strong><a href="user.html" alt="点击去个人中心" style="color:red">
+            {$smarty.session.userdata.nick_name}</a>
+            </strong> 
+            &nbsp;{$smarty.session.userdata.user_grade}
+            </div>
+            {/if}
+                  <span class="bang-sp">
+                今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+              </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+   </div>
+</div>
+<div class="box clearfix">
+   <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png"/></a></div>
+   <div class="dao">
+      <ul class="shou clearfix">
+	      <li><a href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb.html">合成贡献宝</a></li>
+         <li class="diy"><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+	  </ul>
+   </div>
+ <div class="chan">
+ <a id="a" href="" style="color:grey" hover="this.style.color='red'"><img src="{$smarty.const.IMG_URL}/r3.png" />&nbsp; 我的资产 &or;</a>
+ <div id="ifrmMyasset"></div>
+ <script>$('#ifrmMyasset').load('myasset.html');</script>
+ </div>
+</div>
+<!--头部结束-->
+<!--中部-->
+<div class="zhong">
+   <div class="box clearfix">
+      <div class="xiao">
+	     <ul class="ming clearfix">
+		    <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+			<li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=2">抢红包记录</a></li>
+			<li class="min"><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=3">发布红包记录</a></li>
+		 </ul>
+	  </div>
+	  <div class="mbi">
+        <form id="form1" name="form1" method="post" action="">
+          <table width="100%" height="460">
+            {if $send_hongbao_list!=null}
+            <tr>
+              <td width="19%" align="center" valign="middle" bgcolor="#e0e0e0"style="height:40px"><span class="STYLE25">发布时间 </span></td>
+              <td width="12%" align="center" valign="middle" bgcolor="#e0e0e0"style="height:40px"><span class="STYLE25">红包数量</span></td>
+              <td width="35%" align="center" valign="middle" bgcolor="#e0e0e0"style="height:40px"><span class="STYLE25">红包寄语</span></td>
+              <td width="14%" align="center" valign="middle" bgcolor="#e0e0e0"style="height:40px"><span class="STYLE25">剩余数量 </span></td>
+              <td width="20%" align="center" valign="middle" bgcolor="#e0e0e0"style="height:40px"><span class="STYLE25">总金额</span></td>
+            </tr>
+             {else}<br/><br/>
+                     <p>&nbsp;&nbsp;&nbsp;没有更多了</p>
+                     {/if}
+
+            {foreach $send_hongbao_list as $k => $v}
+                            {if $v.c_time}
+            <tr>
+              <td align="center" valign="middle"><span class="STYLE23">{$v.c_time}</span></td>
+              <td align="center" valign="middle"><span class="STYLE23">{$v.count}</span></td>
+              <td align="center" valign="middle"><span class="STYLE23">恭喜发财，万事如意，  股市涨停，币市翻倍！</span></td>
+              <td align="center" valign="middle"><span class="STYLE23"> {$v.left_count} </span></td>
+              <td align="center" valign="middle"><span class="STYLE23">{$v.amount|string_format:"%.6f"}RAC </span></td>
+            </tr>
+            {/if}
+             {/foreach}
+
+          </table>
+        </form>
+	  </div>
+     <div class="fye">
+       <div class="page_nav">
+       {$send_hongbao_pager}
+       </div>
+     </div>
+    </div>
+   </div>
+</div>
+<!--中部结束-->
+<!--低部-->
+<div style="height:288px;"></div>
+<div class="bottom di_bu">
+   <div class="box clearfix">
+      <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+	  <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+   </div>
+
+</div>
+<!--低部结束-->
+<div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</body>
+</html>

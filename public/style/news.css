@@ -1,0 +1,94 @@
+
+
+/*  整  个  内  部  的  设  置  */
+.bigbody {
+    width: 100%;
+    height: auto;
+    background-image:url(../images/shuiyin.png);
+    background-color: rgba(230,230,230,1);
+    padding-top: 10px;
+	padding-bottom:20px;
+}
+
+.news {
+    height: auto;
+    width: 1204px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255,255,255,1);
+    overflow: hidden;
+}
+.bddbb>ul{
+	width:100%;
+	text-align:left;
+	margin-left:30px;
+	vertical-align:middle;
+	}
+	
+.bddbb>ul{
+	width:100%;
+	text-align:left;
+	margin-left:50px;
+	vertical-align:middle;
+	}
+
+.bddbb>ul>li {
+	display:inline-block;
+	padding:10px 0;
+	
+	}
+
+.bddbb>ul>li:first-child {
+	color:rgba(255,0,0,1);
+	margin-right:30px;
+	}
+	
+.noti {
+	padding:10px 50px;
+	}
+
+.noti>ul {
+	display:block;
+	height:50px;
+	}
+
+.noti>ul>li:first-child {
+	float:left;
+	}
+	
+.noti>ul>li:last-child {
+	float:right;
+	}
+
+
+
+
+
+.noti>.page {
+	float:right;
+	padding:10px 0;
+	}
+	
+.noti>.page>ul>li {
+	display:inline-block;
+	margin:0 10px;
+	}
+	
+.noti>.page>ul>li>a {
+	display:block;
+	height:20px;
+	width:20px;
+	text-align:center;
+	line-height:20px;
+	border:1px rgba(210,210,210,1) solid;
+	}
+	
+.noti>.page>ul>li>a:hover {
+	background:rgba(28,157,219,1);
+	color:rgba(255,255,255,1);
+	-moz-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-ms-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-o-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-webkit-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	}

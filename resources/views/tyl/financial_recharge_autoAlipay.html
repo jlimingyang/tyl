@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+<link rel="shortcut icon" href="" > <!-- 地址栏前面的图标 -->
+<title>图有利</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}styleadd.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}bootstrap.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}../layer/layer.js"></script>
+
+ 
+<!--[if lte IE 6]>
+<script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+</script>
+<![endif]-->
+<!--[if gte IE 7]> 
+
+ <![endif]-->
+<script type="text/javascript">
+ 
+  $(document).ready(function(){
+
+    $("#sub_pay").on("click",function(){
+
+     $("#pay_for").text($("#mon").val());
+    });
+  });
+</script>
+<style type="text/css">
+    {literal}
+    .yan_hua{padding-right: 15px;width: 175px;}
+    {/literal}
+</style>
+
+</head>
+<body>  
+<!--头部-->
+<div class="top textcenter clearfix" style="padding: 0;margin-top: -22px">
+   <div class="box clearfix">
+          {if $smarty.session.userdata.user_id}
+            <div class="nin">
+             您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+            <strong><a href="user.html" alt="点击去个人中心" style="color:red">
+            {$smarty.session.userdata.nick_name}</a>
+            </strong> 
+            &nbsp;{$smarty.session.userdata.user_grade}
+            </div>
+            {/if}
+                  <span class="bang-sp">
+                今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+              </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+   </div>
+</div>
+<div class="textcenter">
+<div class=" box clearfix">
+   <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png"/></a></div>
+   <div class="dao">
+      <ul class="shou ">
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+     <li class="diy"><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb.html">合成贡献宝</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+     <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+    </ul>
+   </div>
+ <div class="chan">
+ <a id="a" href="" style="color:grey" hover="this.style.color='red'"><img src="{$smarty.const.IMG_URL}/r3.png" />&nbsp; 我的资产 &or;</a>
+ <div id="ifrmMyasset"></div>
+ <script>$('#ifrmMyasset').load('myasset.html');</script>
+ </div>
+</div>
+</div>
+<!--头部结束-->
+<!--中部-->
+<div class="zhong">
+   <div class="box clearfix">
+      <div class="xiao">
+	     <ul class="ming clearfix">
+		  <li class="min"><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=1">人民币充值</a></li>
+          <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=3">人民币提现</a></li>
+          <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">个人财务</a></li>
+          <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=5&b=1">账单明细</a></li>
+          <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=6">收益明细</a></li>
+          <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=13">淘金果园</a></li>
+		 </ul>
+	  </div>
+	  <div class="fenk clearfix">
+		  <!--左-->
+		  <div class="zuo">
+		     <ul class="xdao clearfix">
+			     <li class="mai"><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=1">支付宝充值</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=9">微信充值</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=2">第三方充值</a></li>
+			 </ul>
+		  </div>
+		  <!--左结束-->
+		  <!--右-->
+		  <div class="you">
+			  <div class="chong">
+                <div class="zhuanz">
+                    <div class="chongzhi">
+                        <img src="{$smarty.const.IMG_URL}alipay.png"/>
+                              <span class="textwr"><small><a href="{$smarty.const.ACCESS_URL_INDEX}callus">充值遇到问题？点此联系<i>客服</i></a></small></span>
+                    </div>
+                </div>
+			  </div>
+              <div class="chong">
+            <div class="jilu">充值记录</div>
+         <div class="ding">
+             <form id="form1" name="form1" method="post" action="">
+               <table width="100%" height="218">
+                        {if $alipay_recharge_list!=null}
+                       <tr>
+                         <td align="center" valign="middle" bgcolor="#e0e0e0"><span class="STYLE16">订单号</span></td>
+                         <td align="center" valign="middle" bgcolor="#e0e0e0"><span class="STYLE16">时间</span></td>
+                         
+                         <td align="center" valign="middle" bgcolor="#e0e0e0"><span class="STYLE16">金额</span></td>
+                         <td align="center" valign="middle" bgcolor="#e0e0e0"><span class="STYLE16">状态</span></td>
+                       </tr>
+                       {else}
+                       <br/><br/>
+                        <p>&nbsp;&nbsp;&nbsp;暂无充值记录</p>
+                       {/if}
+                        {foreach $alipay_recharge_list as $k => $v}
+                        {if $v.id}
+                       <tr>
+                         <td align="center" valign="middle"><span class="STYLE19"> {$v.id}</span></td>
+                         <td align="center" valign="middle"><span class="STYLE19">{$v.op_time}</span></td>
+                         
+                         <td align="center" valign="middle"><span class="STYLE19">￥{$v.money}</span></td>
+                         <td align="center" valign="middle"><span class="STYLE19">{if $v.status==1}建立充值{else if $v.status==2}等待银行到账{else if $v.status==3}到账{else if $v.status==4}失效{else if $v.status==5}操作失败{else}锁定{/if}</span></td>
+                       </tr>
+                         {/if}
+                       {/foreach} 
+                       
+                     </table>
+                   </form>
+         </div>
+         <br/>
+         <br/>
+
+            <p align="center">{$alipay_recharge_list_pager}</p>
+
+        </div>
+		  </div>
+		  <!--右结束-->
+	  </div>
+   </div>
+</div>
+<!--中部结束-->
+<!--低部-->
+<div style="height:488px;"></div>
+<div class="bottom di_bu">
+   <div class="box clearfix">
+      <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+	  <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by 深圳前海图有利数字资产管理有限的公司.蜀ICP备11000560号-3</div>
+   </div>
+</div>
+
+<!--模态框-->
+    <div class="modal fade " id="myModalC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="location.reload()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">充值订单<span>（待支付）</span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>请<span class="orange">使用支付宝</span>向以下银行账户转账</p>
+                    <form>
+                        <table>
+                            <tbody>
+                                <tr><th>支付宝账户</th><td>2102909581@qq.com</td></tr>
+                                <tr><th>收款人姓名</th><td>宝睿科技</td></tr>
+                                <tr><th>待支付金额</th><td><span class="orange" id="pay_for"><!-- 41615.15 --></span></td></tr>
+                                <tr><th>备注/附言</th><td>ID：{$smarty.session.userdata.user_id}</td></tr>
+                                <tr><th>到账时间</th><td>转账完成后40分钟内</td></tr>
+                                <tr>
+                                    <th></th>
+                                    <td>请在汇款备注/附言中严格按要求填写充值ID：<span class="orange">{$smarty.session.userdata.user_id}</span>
+                                        <br>
+                                            不要填写除了数字以外的其他字符（升值币、贡献宝等），否则不能正确到账！
+                                        <br />
+                                        图有利会在收到汇款后<span class="orange">40分钟</span>内为您入账，在此期间无需联系客服，如有问题我们会主动联系您
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>如有疑问请<a href="javascript:;">查看帮助</a>&nbsp; 或联系客服<a href="javascript:;">QQ</a></p>
+                    <!--保存后此页面换成另一个页面-->
+                </div>
+            </div>
+        </div>
+    </div>
+<!--低部结束-->
+{literal}
+<script type="text/javascript">
+ function submitpay()
+  {
+      $.post("http://www.tuyouli.cn/tyl_coin/user/recharge",{'t':0,'amount':$('#mon').val()},function(data){
+          layer.msg(data.info);
+          if(data.status==0)
+          {
+            $("#myModalC").html("");
+            location.reload();
+          }
+
+      });
+  }
+ </script>
+ {/literal} 
+ <div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</body>
+</html>

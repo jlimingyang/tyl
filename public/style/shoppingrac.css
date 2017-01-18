@@ -1,0 +1,149 @@
+
+
+/*交易记录*/
+.shoppingrac {
+	background:rgba(255,255,255,1);
+	min-height:690px;
+	height:auto;
+	}
+.shoppingrac>table {
+	width:100%;
+	}
+
+.shoppingrac>table>tbody>tr>th {
+	font-weight:normal;
+	text-align:center;
+	color:rgba(28,157,219,1);
+	}
+	
+.shoppingrac>table>tbody>tr>td {
+	text-align:center;
+	}
+	
+.shoppingrac>table>tbody>tr:hover {
+	background:rgba(120,200,240,0.2);
+	}
+
+/**/
+.shoppingrac>.page {
+	width:100%;
+	background:rgba(255,255,255,1);
+	padding:30px 0;
+	}
+	
+.shoppingrac>.page>ul {
+	float:right;
+	margin-right:50px;
+	background:rgba(255,255,255,1);
+
+	}
+	
+.shoppingrac>.page>ul>li {
+	background:rgba(255,255,255,1);
+	display:inline-block;
+	margin:0 10px;
+	}
+	
+.shoppingrac>.page>ul>li>a {
+	display:block;
+	height:20px;
+	width:20px;
+	text-align:center;
+	line-height:20px;
+	border:1px rgba(210,210,210,1) solid;
+	}
+	
+.shoppingrac>.page>ul>li>a:hover {
+	background:rgba(28,157,219,1);
+	color:rgba(255,255,255,1);
+	-moz-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-ms-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-o-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	-webkit-box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	box-shadow:0 0 10px rgba(21,122,170,0.8) inset;
+	}
+
+/*  查  看 弹 出  框  */
+ .upload{display: none; }
+ .black_overlay{ 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color:rgba(0,0,0,0.8); 
+            z-index:1001; 
+} 
+.white_content { 
+	position: absolute; 
+	top: 30%; 
+	left: 30%; 
+	width: 40%; 
+	height: 50%; 
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-o-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:0 0 30px 1px rgba(0,0,0,0.6);
+	background-color:#D4D4D4; 
+	z-index:1002; 
+	overflow: auto; 
+} 
+
+.white_content>.light-top{
+	display:block;
+	line-height:80px;
+    color:rgba(28,157,219,1);
+	margin:0;
+	padding:0;
+	font-size:24px;
+	height:80px;
+	width:100%;
+	background:#ccc;}
+
+.white_content>.light-top>span{
+	display:block;
+	line-height:80px;
+    text-align:center;
+    color:rgba(28,157,219,1);
+	font-size:24px;
+	height:80px;
+	width:100%;
+
+}
+	
+.white_content>.light-top>button{
+    position:absolute;
+    border:none;
+    height:20px;
+    width:20px;
+    top:30px;
+    background:url(../images/remove1.png) no-repeat;
+    right:30px;
+
+}
+
+.white_content>.light-top>button:hover{
+    position:absolute;
+    border:none;
+    height:30px;
+    width:30px;
+    top:25px;
+    background:url(../images/remove2.png) no-repeat;
+    right:25px;
+
+}
+.white_content>.up table{margin-left:auto;margin-right:auto;margin-top:20px;}
+.white_content>.up table tr{height:50px;}
+.white_content>.up table th{width:70px;text-align:center;font-weight:normal;}
+.white_content>.up table td input{
+    width:200px;
+    text-align:center;
+    border-color:transparent transparent rgba(28,157,219,1) transparent;
+    border-style:solid;
+    border-width:1px;
+    background:#d4d4d4;
+    margin-top:-18px;
+
+}
+.white_content>.up table button {background:rgba(28,157,219,1);color:rgba(255,255,255,1);border:none;width:200px;}

@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+<link rel="shortcut icon" href="" > <!-- 地址栏前面的图标 -->
+<title>图有利</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}t.v.code.js"></script>
+<!--[if lte IE 6]>
+<script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+</script>
+<![endif]-->
+<style type="text/css">
+{literal}
+<!--
+.STYLE18 {font-size: 14px; color: #333333; }
+.STYLE19 {color: #da251c}
+.STYLE21 {
+	font-size: 14px;
+	color: #fd2015;
+
+}
+.tleft{text-align: left}  
+-->
+{/literal}
+</style>
+</head>
+<body>	
+<!--头部-->
+<div class="top">
+   <div class="box clearfix">
+    
+       
+          {if $smarty.session.userdata.user_id}
+            <div class="nin">
+             您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+            <strong><a href="{$smarty.const.ACCESS_URL_INDEX}user.html" alt="点击去个人中心" style="color:red">
+            {$smarty.session.userdata.nick_name}</a>
+            </strong> 
+            &nbsp;{$smarty.session.userdata.user_grade}
+            </div>
+            {/if}
+                <span class="bang-sp">
+                今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+              </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+   </div>
+</div>
+<div class="box clearfix">
+   <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png"/></a></div>
+   <div class="dao">
+      <ul class="shou clearfix">
+	    <li><a href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb.html">合成贡献宝</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+         <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+	  </ul>
+   </div>
+    <div class="chan">
+ <a id="a" href="#" style="color:grey" hover="this.style.color='red'"><img src="{$smarty.const.IMG_URL}/r3.png" />&nbsp; 我的资产 &or;</a>
+ <div id="ifrmMyasset"></div>
+ <script>$('#ifrmMyasset').load('myasset.html');</script>
+ </div>
+</div>
+<!--头部结束-->
+<!--中部-->
+<div class="zhong">
+   <div class="box">
+      <div class="yitiao clearfix">
+	     <div class="tzuo">
+		    <div class="geren"><img src="{$smarty.const.IMG_URL}t4.png"/> 修改个人信息</div>
+			<div class="xinxi">
+         {if $smarty.session.userdata.nick_name!=''}
+             <form id="form1" name="form1" method="post" action="">
+                  <input type="hidden" name="t" value="1"/>
+            <table width="100%" height="200">
+                  <tr>
+                    <td width="25%" align="center" valign="middle"><span class="STYLE18"> email：</span></td>
+                    <td width="75%" align="center" valign="middle"><div align="left" class="STYLE18">{$smarty.session.userdata.login_name}</div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">昵       称：</span></td>
+                    <td align="center" valign="middle" class="tleft"><span class="STYLE18" >{if $smarty.session.userdata.nick_name!=''}{$smarty.session.userdata.nick_name}{/if}</span></td>
+                  </tr>
+                  <tr>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle">&nbsp;</td>
+                    <td align="center" valign="middle">
+                      <div>
+                        <span style="color:red">
+                            
+                             {if $result.type==1}
+                              {$result.msg}
+                             {/if}
+                        <span>
+                           
+                        </div>
+                        <br>
+                      <div align="left">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+
+         {else}
+
+		      <form id="form1" name="form1" method="post" action="{$smarty.const.ACCESS_URL}user/alter_user_info">
+                  <input type="hidden" name="t" value="1"/>
+		        <table width="100%" height="200">
+                  <tr>
+                    <td width="25%" align="center" valign="middle"><span class="STYLE18"> email：</span></td>
+                    <td width="75%" align="center" valign="middle"><div align="left" class="STYLE18">{$smarty.session.userdata.login_name}</div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">昵       称：</span></td>
+                    <td align="center" valign="middle"><input class="email" type="text" id="kword2" name="nick_name" value="请输入昵称" onfocus="if(this.value=='请输入昵称')this.value='';" onblur="if(this.value=='')this.value='请输入昵称';"></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">联系方式：</span></td>
+                    <td align="center" valign="middle"><div align="left">
+                      <input class="email" type="text" id="kword3" name="addr" value="请输入地址" onfocus="if(this.value=='请输入地址')this.value='';" onblur="if(this.value=='')this.value='请输入地址';">
+                    </div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle">&nbsp;</td>
+                    <td align="center" valign="middle">
+                      <div>
+                        <span style="color:red">
+                            
+                             {if $result.type==1}
+                              {$result.msg}
+                             {/if}
+                        <span>
+                           
+                        </div>
+                        <br>
+                      <div align="left">
+                       <input type="submit" class="aniu" name="Submit" value="确认修改" />
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+              
+
+
+           {/if}
+			</div>
+		 </div>
+		 <div class="tyou">
+		    <div class="geren"><img src="{$smarty.const.IMG_URL}t5.png"/> 实名认证</div>
+			<div class="xinxi">
+        {if $smarty.session.userdata.real_name!=''}
+		         <form id="form2" name="form2" method="post" action="">
+             <input type="hidden" name="t" value="1"/>
+		           <table width="100%" height="125">
+                  <tr>
+                    <td width="27%"><div align="right" class="STYLE18">真实姓名：</div></td>
+                    <td width="73%"><span class="STYLE18">{$smarty.session.userdata.real_name}
+                      <span class="STYLE19">{if $smarty.session.userdata.real_name!=''}（未审核）{else}<!-- （未审核） -->{/if}</span></span></td>
+                  </tr>
+                  <tr>
+                    <td><div align="right" class="STYLE18">证件类型：</div></td>
+                    <td><span class="STYLE18">身份证</span></td>
+                  </tr>
+                  <tr>
+                    <td><div align="right" class="STYLE18">证件号码：</div></td>
+                    <td><span class="STYLE18">{$smarty.session.userdata.identify_number}</span></td>
+                  </tr>
+                </table>
+              </form>
+            {else}
+             <form id="form1" name="form1" method="post" action="{$smarty.const.ACCESS_URL}user/alter_user_info">
+              <input type="hidden" name="t" value="2"/>
+            <table width="100%" height="200">
+                  <tr>
+                    <td width="33%" align="center" valign="middle"><span class="STYLE18"> 真实姓名：</span></td>
+                    <td width="67%" align="center" valign="middle"><div align="left" class="STYLE18">
+                      <input type="text" class="form-control email" id="exampleInputPassword1" name="real_name" placeholder="请输入真实姓名">
+                    </div></td>
+                  </tr>
+                 
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">身份证号码：</span></td>
+                    <td align="center" valign="middle">
+                      <div align="left">
+                        <input type="text" class="form-control email" id="exampleInputPassword1"  name="identify_number"  placeholder="请输入身份证号码">
+                        </div></td></tr>
+                  <tr>
+                    <td align="center" valign="middle">&nbsp;</td>
+                    <td align="center" valign="middle"><div align="left">
+                      <div>
+                        <span style="color:red">
+                            
+                             {if $result.type==2}
+                              {$result.msg}
+                             {/if}
+                        <span>
+                           
+                        </div>
+                        <br>
+                     
+                      <input type="submit" class="aniu" name="Submit" value="提交" />
+                    </div></td>
+                  </tr>
+                </table>
+              </form>
+               
+            {/if}   
+			</div>
+		 </div>
+	  </div>
+    <input id="wurl" value="{$smarty.const.ACCESS_URL_USER}send_verify_code" type="hidden">
+	  <div class="ertiao clearfix">
+	     <div class="tzuo">
+		    <div class="geren"><img src="{$smarty.const.IMG_URL}t6.png"/> 修改登录密码</div>
+			<div class="xinxi_a">
+		      <form id="form1" name="form1" method="post" action="{$smarty.const.ACCESS_URL}user/alter_user_info">
+               <input type="hidden" name="t" value="3"/>
+		        <table width="100%" height="200">
+                  <tr>
+                    <td width="33%" align="center" valign="middle"><span class="STYLE18"> 请输入原密码：</span></td>
+                    <td width="67%" align="center" valign="middle">
+                      <div align="left" class="STYLE18">
+                      <input type="password" class="form-control email" id="exampleInputPassword1" name="login_pwd0" placeholder="请输入原密码">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">请输入新密码：</span></td>
+                    <td align="center" valign="middle">
+                      <div align="left">
+                      <input type="password" class="form-control email" id="exampleInputPassword1" name="login_pwd1" placeholder="请输入由6-16位数组成的密码">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">请再次输入新密码：</span></td>
+                    <td align="center" valign="middle">
+                      <div align="left">
+                        <input type="password" class="form-control email" id="exampleInputPassword1"  name="login_pwd2"  placeholder="两次输入必须一致">
+                        </div>
+                    </td>
+                  </tr>
+                   <tr>
+                                    <td align="center" valign="middle"><span class="STYLE18">短信验证：</span></td>
+                                    <td align="center" valign="middle">
+                                      <div align="left">
+                                        <input class="form-control email" type="text" name="mcode" style="width:120px" />
+                                        <!-- <input class="yan" type="button" id="wsvcode-t" value="" /> -->
+                                        <a  class="form-control email" id="wsvcode-t" style="padding:5px;border:0;color:darkgrey">发送短信验证码</a>
+                                      </div>
+
+                                    </td>
+                                  </tr>
+                  <tr>
+                    <td align="center" valign="middle">&nbsp;</td>
+                    <td align="center" valign="middle"><div align="left">
+                        <div>
+                        <span style="color:red">
+                            
+                             {if $result.type==3}
+                              {$result.msg}
+                             {/if}
+                        <span>
+                           
+                        </div>
+                        <br>
+                     
+                      <input type="submit" class="aniu" name="Submit" value="确认修改" />
+                    </div></td>
+                  </tr>
+                </table>
+              </form>
+			</div>
+		 </div>
+		 <div class="tyou">
+		    <div class="geren"><img src="{$smarty.const.IMG_URL}t7.png"/> 修改交易密码</div>
+			<div class="xinxi_a">
+		      <form id="form1" name="form1" method="post" action="{$smarty.const.ACCESS_URL}user/alter_user_info">
+             <input type="hidden" name="t" value="4"/>
+		        <table width="110%" height="200">
+                  <tr>
+                    <td width="33%" align="center" valign="middle"><span class="STYLE18"> 请输入原密码：</span></td>
+                    <td width="67%" align="center" valign="middle"><div align="left" class="STYLE18">
+                      <input type="password" class="form-control email" id="exampleInputPassword1"  name="trade_pwd0" placeholder="请输入原密码">
+                    </div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">请输入新密码：</span></td>
+                    <td align="center" valign="middle"><div align="left">
+                      <input type="password" class="form-control email" id="exampleInputPassword1" name="trade_pwd1" placeholder="请输入由6-16位数组成的密码">
+                    </div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><span class="STYLE18">请再次输入新密码：</span></td>
+                    <td align="center" valign="middle">
+                      <div align="left">
+                        <input type="password" class="form-control email" id="exampleInputPassword1" name="trade_pwd2" placeholder="两次输入必须一致">
+                        </div></td></tr>
+                        <tr>
+                                    <td align="center" valign="middle"><span class="STYLE18">短信验证：</span></td>
+                                    <td align="center" valign="middle">
+                                      <div align="left">
+                                        <input  class="form-control email" type="text" name="mcode" style="width:120px" />
+                                        <input style="height:25px;border:0;color:darkgrey;background-color:transparent;" id="wsvcode" value="发送短信验证码"/>
+                                      </div>
+
+                                    </td>
+                                  </tr>
+                 
+                  <tr>
+                    <td align="center" valign="middle">&nbsp;</td>
+                    <td align="center" valign="middle"><div align="left">
+                        <div>
+                        <span style="color:red">
+                             {if $result.type==4}
+                              {$result.msg}
+                             {/if}
+                        <span>
+                           
+                        </div>
+                        <br>
+                      <input type="submit" class="aniu" name="Submit" value="确认修改" />
+                    </div></td>
+                  </tr>
+                </table>
+              </form>
+			</div>
+		 </div>
+	  </div>	  
+   </div>
+</div>
+<!--中部结束-->
+<!--低部-->
+<div style="height:160px;"></div>
+<div class="bottom">
+   <div class="box clearfix">
+      <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+    <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+   </div>
+</div>
+<!--低部结束-->
+<script type="text/javascript">
+
+ //发送验证码
+    function send_verify_code()
+    { 
+
+        //alert("信息开始发送");
+            
+          $.post("{$smarty.const.ACCESS_URL_USER}send_verify_code",
+          null,
+          function(data){
+            alert("信息已发送,"+data);
+
+            
+          });
+
+          // $.post("{$smarty.const.ACCESS_URL_USER}send_verify_code",
+          //   {},
+          //   function(){
+          //       alert("信息已发送");
+          //   },json);
+       
+
+    }
+
+    
+</script>
+<div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</body>
+</html>

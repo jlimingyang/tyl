@@ -1,0 +1,274 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>帮助中心</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}help.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}flexslider.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}4.2.0/css/font-awesome-ie7.min.css">
+<script type="text/javascript" src="{$smarty.const.JS_URL}less.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.JS_URL}jquery.flexslider.min.js"></script>
+<script type="text/javascript">
+{literal}
+$(function(){ 
+	$("#leftsead a").hover(function(){
+        if($(this).prop("className")=="youhui"){
+            $(this).children("img.hides").show();
+        }else{
+            $(this).children("div.hides").show();
+            $(this).children("img.shows").hide();
+            $(this).children("div.hides").animate({marginRight:'0px'},'0'); 
+        }
+    },function(){ 
+        if($(this).prop("className")=="youhui"){
+            $(this).children("img.hides").hide();
+        }else{
+            $(this).children("div.hides").animate({marginRight:'-163px'},0,function(){$(this).hide();$(this).next("img.shows").show();});
+        }
+    });
+
+    $("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 600);});
+
+	    //右侧导航 - 二维码
+        $(".youhui").mouseover(function(){
+            $(this).children(".2wm").show();
+        })
+        $(".youhui").mouseout(function(){
+            $(this).children(".2wm").hide();
+        });
+	
+	});
+{/literal}
+</script>
+{literal}
+<style>
+.big tr:hover td{background:white}
+.text-content{
+                resize: none;
+                width: 400px;
+                height: 100px;
+                max-width: 200px;
+                max-height: 100px;
+            }
+ </style>
+{/literal}
+</head>
+
+<body>
+	<div class="jpg">
+        <div class="nav">
+            <div class="pic"><img src="{$smarty.const.IMG_URL}logo.png" alt="" width="131" height="44"/></div>
+            <div class="other">
+               <ul>
+                  <li><a class="active" href="{$smarty.const.ACCESS_URL_INDEX}index">首页</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}wallet">钱包</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">RAC集市</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb">合成贡献宝</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_INDEX}news">最新动态</a></li>
+                        <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+            </ul>
+            </div>
+        </div>
+        <div class="wel">
+            <div class="row">
+            您好<a href="{$smarty.const.ACCESS_URL_INDEX}user" alt="点击去个人中心">{$smarty.session.userdata.nick_name}</a>，欢迎来到帮助中心 !   
+                <span>
+                    <a href="{$smarty.const.ACCESS_URL_INDEX}help">帮助中心</a>|
+                    <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                    <a href="javascript:;" class="fa fa-power-off"></a>
+                    <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!--  个  人  中  心  内  容  开  始  -->
+	<div class="big">
+   		<div class="content">
+        	<div class="contact">
+            	<div class="ask">
+                	<span>提问</span>
+                    <form method="post" action="{$smarty.const.ACCESS_URL}user/sub_ques">
+                        <table>
+                            <tbody>
+                                    <tr><th><span>*</span>问题类型：</th>
+                                        <td>
+                                            <select name="q_type">
+                                                <option value="1">虚拟币充值</option>
+                                                <option value="2">虚拟币提现</option>
+                                                <option value="3">人名币充值</option>
+                                                <option value="4">人名币提现</option>
+                                                <option value="5">其他</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr><th><span>*</span>问题内容：</th><td><textarea class="text-content" name="q_content"></textarea></td></tr>
+                                    <tr><th><span>*</span>姓名：</th><td><input type="text" placeholder="请输入真实姓名" name="q_name" value=""/></td></tr>
+                                    <tr><th><span>*</span>联系电话：</th><td><input type="text" placeholder="请输入正确的号码" value="" name="q_phone"/></td></tr>
+                                    <tr><th><span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><td> {if $tip}<span style="color:red">{$tip.msg}</span>{/if}</td></tr>
+
+                                    <tr><td><button type="submit" value="提问">提问</button></td></tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="lists">
+                    <span>常见问题列表</span>
+                	<div class="que">
+                        <ul>
+                            <li><a href="javascript:;" bb="1">充值为什么不到账？</a></li>
+                           
+                        </ul>
+                    </div>
+                    <div class="ans" style="height:400px;">
+                        <div class="ans1" bb="1" style="display:block">
+                        	 <ul>
+                                <li>
+                                   <br/>
+                                   <br/>
+                                    <h2>一、充值不到账：</h2>
+                                    <h4>1. 银行汇款：</h4>
+                                    已汇款但未填写汇款单：需要在充值页面补填汇款单，保证整数一致即可，小数点不一致不影响充值。
+                                    填写汇款单填写但未实际汇款：完成汇款后，40分钟内到账。
+                                    汇款单过期：填单后48小时内未实际汇款，汇款单过期。若48小时后汇款，需补填汇款单，40分钟内到账。
+                                    填错信息，重新补填汇款单并完成汇款，40分钟内到账。
+                                    汇款单信息有误：汇款人姓名、银行卡号等信息要与实际汇款信息保
+                                    持一致。
+                                  
+                                    <h4>2. 支付宝汇款：</h4>
+                                    汇款至火币原来的支付宝或银行账号：处理时间为2-3小时，请耐心等候。
+                                    汇款单信息有误：汇款单填写的支付宝账号是手机号，付款用的支付宝账号是邮箱，导致信息无法匹配，处理时间延长至2-3小时。
+                                    汇款金额和填单金额不一致：每张汇款单的金额应与汇款金额一致。如果填了1张5万元的汇款单，分五笔每次1万元汇款，应补填5张每笔1万的汇款单。
+                                  
+                                    <h4>3. 非本人银行卡账号充值：</h4>
+                                    汇款人姓名和网站实名认证姓名不一致，火币网联系用户并记录信息后两个工作日内退款至汇款账号。
+                                   
+                                    <h2>二、提现不到账：</h2>
+                                  
+                                    <h4>1. 已审核未到账：</h4>
+                                    区块确认问题：区块确认时间一般为10分钟-1小时不等，因区块链网络原因还有可能时间更长，请您耐心等待。
+                                   
+                                    <h4>2.已提交未审核：</h4>
+                                    触发高级认证：高级认证即C2认证，C2认证分证件审核和银行卡审核。证件审核需要上传身份证及手持身份证照片，提交后2-3小时内审核。银行卡审核填好银行账户信息后，等银行打款即可，24小时内打款。
+                                    触发视频认证：需要预约视频认证，24小时内处理。
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ans2" bb="2">
+                        </div>
+                        <div class="ans3" bb="3"></div>
+                        <div class="ans4" bb="4"></div>
+                        <div class="ans5" bb="5"></div>
+                    </div>
+                </div>
+                <div class="note"  style="text-align:center">
+                    {foreach $usermsg as $v}
+                    {if $v.m_content}
+                	<span>{$v.title}</span>
+                	<a href="javascript:;">
+                        <ul onClick="openit()" style="margin-top:0">
+                            <li>{$v.m_content} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$v.c_time}</li>
+                        </ul>
+                    </a>
+                    {/if}
+                    {/foreach}
+                </div>
+                <div class="page">
+                	
+                   
+                    <br/>
+                    {$usermsg_pager}
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--  个  人  中  心  内  容  结  束  -->
+    
+    
+    <!--  页  脚  之  类  的  开  始  -->
+   <!--低部-->
+<div class="bottom">
+   <div class="box clearfix">
+      <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+      <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+   </div>
+</div>
+<!--低部结束-->
+    <!--  页  脚  之  类  的  结  束  -->
+    
+   <!--   查   看   弹   出   框   --> 
+    <div class="upload">
+        <div id="light" class="white_content">
+        	<div class="light-top">
+            <span>红包通知消息</span>
+            <button type="button" onClick="javascript:closeit();">
+            	<span class="fa fa-remove fa-4x"></span>
+            </button>
+            </div>
+            <div class="up">
+                <span>恭喜你，成功抢到0.001个RAC！</span>
+            </div>
+        </div> 
+        <div id="fade" class="black_overlay"></div>
+    </div>
+    <!--   查   看   弹   出   框   结   束   -->  
+    
+    
+ <script type="text/javascript">
+ {literal}
+	function openit(){
+		$('.upload').show();
+		};
+
+	function closeit(){
+		$('.upload').hide();
+		};
+		
+	$(document).ready(function() {
+		$('.lists>.que>ul>li:first-child>a').addClass('qq');
+			$('.ans1').show();
+			$('.lists>.que>ul>li>a').click(function(){
+				$('.lists>.que>ul>li>a').removeClass('qq');
+				$('.ans>div').hide();
+				
+				$(this).addClass('qq');
+				
+				var i =$(this).attr('bb');
+				$('div[bb="' + i + '"]').show();
+				
+				});
+        
+    });	
+    {/literal}	
+ </script>
+ <div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</body>
+</html>

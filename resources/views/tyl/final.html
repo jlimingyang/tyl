@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图有利</title>
+    <link rel="Bookmark" href=""> <!-- 收藏夹中的图-->
+    <link rel="shortcut icon" href=""> <!-- 地址栏前面的图标 -->
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}reset.css" />
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}style.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}final.css">
+    <link rel="stylesheet" href="{$smarty.const.CSS_URL}bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_URL}bs-is-fun.css" />
+    <link type="text/css" rel="stylesheet" href="{$smarty.const.CSS_URL}shCore.css" />
+    <link type="text/css" rel="stylesheet" href="{$smarty.const.CSS_URL}shThemeDefault.css" />
+    <script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.11.2.min.js"></script>
+    <!--[if lte IE 6]>
+    <script src="{$smarty.const.JS_URL}DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    DD_belatedPNG.fix('img,div,ul,li,input,a,span,h3,form,dt,dl,dl');
+    </script>
+    <![endif]-->
+    <style type="text/css">
+        {
+            literal;
+        }
+        <!--
+        .STYLE18 {
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .STYLE19 {
+            color: #da251c;
+        }
+
+        .STYLE21 {
+            font-size: 14px;
+            color: #fd2015;
+        }
+        -->
+        {
+            /literal;
+        }
+    </style>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}jquery-1.8.3.min.js"></script>
+
+
+</head>
+
+<body>
+	<div class="big">
+        <div class="top">
+            <div class="box clearfix">
+               
+
+                {if $smarty.session.userdata.user_id}
+                <div class="nin">
+                 您好! UID:{$smarty.session.userdata.user_id}&nbsp;
+                <strong><a href="user.html" alt="点击去个人中心" style="color:red">
+                {$smarty.session.userdata.nick_name}</a>
+                </strong> 
+                &nbsp;{$smarty.session.userdata.user_grade}
+                </div>
+            {/if}
+                   <span style="color:red"><span class="bang-sp">
+                    今日&nbsp;RAC:{$smarty.session.newdata.newRac.price|string_format:"%.6f"}
+                    &nbsp;GXB:{$smarty.session.newdata.newGxb.price|string_format:"%.6f"}
+                  </span>
+             <div class="bang">
+            <span>
+                <a href="help.html">消息</a>|
+                <a href="help.html">帮助中心</a>|
+                <a href="{$smarty.const.ACCESS_URL_INDEX}callus">联系我们</a>|
+                <a href="javascript:;" class="fa fa-power-off"></a>
+                <a href="{$smarty.const.ACCESS_URL_USER}logout">退出</a>
+            </span>
+            </div>
+            </div>
+        </div>
+        <div class="box clearfix">
+            <div class="logo"><a href=""><img src="{$smarty.const.IMG_URL}logo.png" /></a></div>
+            <div class="dao">
+                <ul class="shou clearfix">
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}index.html">首页</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}trade?t=1">交易中心</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}financial?t=4">财务中心</a></li>
+                 <li><a href="">商城</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}market?t=1">集市</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}compose_gxb.html">合成贡献宝</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}package?t=1">抢红包</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_INDEX}real?t=1">实时行情</a></li>
+                 <li><a href="{$smarty.const.ACCESS_URL_SHOP}index">商城</a></li>
+                  </ul>
+            </div>
+   
+        </div>
+        <div class="zhuce">
+                <div class="jindu">
+                    <ul class="nav nav-pills nav-justified step step-arrow">
+                        <li>
+                            <a href="#">第一步&nbsp;&nbsp;注册</a>
+                        </li>
+                        <li>
+                            <a href="#">第二步&nbsp;&nbsp;完善信息</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">第三步&nbsp;&nbsp;实名认证</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form">
+                    <form method="post" autocomplete="on" action="{$smarty.const.ACCESS_URL}user/auth" enctype="multipart/form-data">
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>证件类型:<select><option value="1" selected="selected" name="type">身份证</option></select></td>
+                                    <td><span class="warn1">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td>身份证号码:<input type="text" value="" placeholder="身份证号码" name="identify_number"/></td>
+                                    <td><span class="warn1">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td>居住地址:<input type="text" value="" placeholder="居住地址" name="addr" /></td>
+                                    <td><span class="warn1">*</span></td>
+                                </tr>
+                                <tr>
+                                    <td>身份证正面照:
+                                        <input type="text" id="textfield" class="txt" disabled="disabled" placeholder="请上传身份证正面照" />
+                                    </td>
+                                    <td>
+                                        <span class="warn1">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="file" name="identify_img1" class="file" id="fileField" onchange="document.getElementById('textfield').value=this.value" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>身份证反面照:
+                                        <input type="text" name="textfield" id="textfield1" class="txt" disabled="disabled" placeholder="请上传身份证反面照" />
+                                    <td><span class="warn1">*</span></td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="file" name="identify_img2" id="fileField1" onchange="document.getElementById('textfield1').value=this.value" />
+                                    </td>
+                                </tr>
+                                <td>
+                                    <span>{if $result}<span>{$result['msg']}</span>{/if}
+                                </td>
+                                <tr>
+                                    <td><button type="sumit" value="">完成</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        <!--低部-->
+        <div style="height:190px;"></div>
+        <div class="bottom">
+            <div class="box clearfix">
+                <div class="dida"><a href="">关于我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">常见问题</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">手续费</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">服务条款</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">招聘英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="">图有利用户协议</a></div>
+                <div class="ban">2015-2016 tuyouli.cn Inc. All Rights Reserved. Powered by  {$smarty.session.beian}<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258023342'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258023342%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+            </div>
+        </div>
+        <!--低部结束-->
+    </div>
+    
+    
+    	<script src="{$smarty.const.JS_URL}lib/jquery-1.11.0.js"></script>
+		<script src="{$smarty.const.JS_URL}lib/bootstrap.min.js"></script>
+		<script type="text/javascript" src="{$smarty.const.JS_URL}brush.js"></script>
+		<script>
+			$(function() {
+				SyntaxHighlighter.config.clipboardSwf = '{$smarty.const.JS_URL}clipboard.swf';
+				SyntaxHighlighter.all();
+				//myModalNext 
+				$("#myModalNext .modal-footer button").each(function() {
+					$(this).click(function() {
+						if ($(this).hasClass("MN-next")) {
+							$("#myModalNext .carousel").carousel('next');
+							$("#myModalNext .step li.active").next().addClass("active");
+						} else {
+							$("#myModalNext .carousel").carousel('prev');
+							if ($("#myModalNext .step li").length > 1) {
+								$($($("#myModalNext .step li.active"))[$("#myModalNext .step li.active").length - 1]).removeClass("active")
+							}
+						}
+					})
+				})
+			})
+		</script>
+     <div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}   
+</body>
+</html>

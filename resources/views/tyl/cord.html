@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{$smarty.const.JS_URL}sweetalert.css" />
+    <script type="text/javascript" src="{$smarty.const.JS_URL}Jquery/jquery.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}qrcode.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}Base.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}prototype.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}mootools.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}Ajax/ThinkAjax.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}sweetalert.min.js"></script>
+    <script type="text/javascript" src="{$smarty.const.JS_URL}sweetalert-dev.js"></script>
+	<script language="JavaScript">
+	    function Check()
+	    {
+	    	var out_trade_no = "{$out_trade_no}"; 
+	    	ThinkAjax.send('{$smarty.const.ACCESS_URL_INDEX}orderQuery','ajax=1&out_trade_no='+out_trade_no,goto);
+	    }
+	    function goto(data,status){
+	    	if (status==1)
+	    	{
+	    		swal("支付成功！", "", "success");//弹出信息
+	    		window.setTimeout("window.location='{$smarty.const.ACCESS_URL_INDEX}financial?t=9'",3000);//跳转地址
+	    	}
+	    	}
+	    window.setInterval("Check()",3000); 
+	</script>
+</head>
+<body>
+    <div align="center" id="qrcode">
+    </div>
+    <div align="center">
+        <p>订单号：{$out_trade_no}</p>
+    </div>
+    <br>
+    <br>
+</body>
+    <script>
+    	var url = "{$code_url}";
+        if(url)
+        {
+            //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+            var qr = qrcode(10, 'M');
+            qr.addData(url);
+            qr.make();
+            var wording=document.createElement('p');
+            wording.innerHTML = "微信支付";
+            var code=document.createElement('DIV');
+            code.innerHTML = qr.createImgTag();
+            var element=document.getElementById("qrcode");
+            element.appendChild(wording);
+            element.appendChild(code);
+        }
+      
+    </script>
+    <div class="lanrenzhijia_service">
+  <ul>
+    <span class="right_bar"></span>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=1157438691&site=qq&menu=yes" class="right_qq" target="_blank"></a>
+    <span class="right_phone">4006-825-078</span>
+  </ul>
+</div>
+{literal}
+<script>
+$(function(){
+	$(".lanrenzhijia_service").hover(function(){
+		$(this).animate({width:'160px'});
+	},function(){
+		$(this).animate({width:'40px'});
+	});
+});
+</script>
+{/literal}
+</html>
